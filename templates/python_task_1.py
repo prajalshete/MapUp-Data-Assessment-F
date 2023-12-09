@@ -17,32 +17,36 @@ def generate_car_matrix(df)->pd.DataFrame:
     return df
 
 
-def get_type_count(df)->dict:
-    """
-    Categorizes 'car' values into types and returns a dictionary of counts.
 
-    Args:
-        df (pandas.DataFrame)
 
-    Returns:
-        dict: A dictionary with car types as keys and their counts as values.
-    """
+
     # Write your logic here
+    import pandas as pd
 
-    return dict()
-
-
-def get_bus_indexes(df)->list:
+def get_bus_indexes(df: pd.DataFrame) -> list:
     """
     Returns the indexes where the 'bus' values are greater than twice the mean.
 
     Args:
-        df (pandas.DataFrame)
+        df (pandas.DataFrame): Input DataFrame
 
     Returns:
         list: List of indexes where 'bus' values exceed twice the mean.
     """
-    # Write your logic here
+    # Calculate the mean of 'bus' values
+    bus_mean = df['bus'].mean()
+
+    # Filter indexes where 'bus' values exceed twice the mean
+    indexes_above_twice_mean = df[df['bus'] > 2 * bus_mean].index.tolist()
+
+    return indexes_above_twice_mean
+
+# Example usage
+# Assuming 'dataset-1.csv' is the name of your CSV file
+df = pd.read_csv('dataset-1.csv')
+result_bus_indexes = get_bus_indexes(df)
+print(result_bus_indexes)
+
 
     return list()
 
