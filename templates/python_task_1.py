@@ -28,6 +28,25 @@ def get_type_count(df)->dict:
         dict: A dictionary with car types as keys and their counts as values.
     """
     # Write your logic here
+    
+    # Categorize 'car' values into types
+    df['car_type'] = pd.cut(df['car'], bins=[-float('inf'), 15, 25, float('inf')],
+                            labels=['low', 'medium', 'high'], right=False)
+
+    # Calculate counts for each car_type
+    type_counts = df['car_type'].value_counts().to_dict()
+
+    # Sort the dictionary alphabetically based on keys
+    type_counts = dict(sorted(type_counts.items()))
+
+    return type_counts
+
+# Example usage
+# Assuming 'dataset-1.csv' is the name of your CSV file
+df = pd.read_csv('dataset-1.csv')
+result_type_count = get_type_count(df)
+print(result_type_count)
+
 
     return dict()
 
